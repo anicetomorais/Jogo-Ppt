@@ -5,23 +5,17 @@ public class Game {
         Random random = new Random();
         int escolhaComputador = random.nextInt(3);
 
-        String escolhaComputadorString;
         // Dentro da Switch, 0 = Pedra, 1 = Papel, 2 = Tesoura. o Default é para nunca acontecer.
         switch (escolhaComputador) {
             case 0:
-                escolhaComputadorString = "Pedra";
-                break;
+                return "Pedra";
             case 1:
-                escolhaComputadorString = "Papel";
-                break;
+                return "Papel";
             case 2:
-                escolhaComputadorString = "Tesoura";
-                break;
+                return "Tesoura";
             default:
-                escolhaComputadorString = "Opção inválida";
+                return "Opção inválida";
         }
-        return escolhaComputadorString;
-
     }
 
     public String verificarVencedor(String jogador, String computador) {
@@ -34,7 +28,7 @@ public class Game {
             return "Você venceu!";
 
         } else {
-            return "O Computador venceu!";
+            return "Vitória do Computador!";
             
         }
     }

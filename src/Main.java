@@ -1,29 +1,60 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Game game = new Game(); // Esse é o objeto Game, que serve para puxar as informações de Game.java
+        Game game = new Game();
 
-        // Aqui eu printei o texto inicial do jogo para o jogador saber o que deve ser feito.
-        System.out.println("Bem vindo ao Pedra, Papel e Tesoura.");
+        System.out.println("Bem-vindo ao Pedra, Papel e Tesoura!");
         System.out.println("Esse é o primeiro projeto da minha vida como programador.");
-        System.out.println("Vamos começar!");
-        System.out.println("===========================================================");
-        System.out.println("Digite: Pedra, Papel ou Tesoura.");
-        // ------------------------------------------------------------------------------------
+        System.out.println("===========================================================\n");
 
-        String escolhaJogador = scanner.nextLine(); // Aqui serve para salvar a escolha do jogador em uma variável do tipo String.
-        System.out.println("O Jogador Escolheu: " + escolhaJogador); // Aqui o jogador vai ver na tela qual foi a sua escolha.
+        while (true) { // Permite jogar várias rodadas
+            System.out.print("Digite: Pedra, Papel ou Tesoura: ");
+            
+            String escolhaJogador;
+            while (true) {
+                escolhaJogador = scanner.nextLine().trim();
 
-        String escolhaComputador = game.escolhaComputador();    // Aqui vai chamar a classe Game.java para mostrar a escolha do Computador.
-        System.out.println("O Computador escolheu: " + escolhaComputador); // Aqui vai exibit para o jogador a escolha do Computador.
+                // Formatar para sempre ter a primeira letra maiúscula e o resto minúsculo
+                if (escolhaJogador.length() > 0) {
+                    escolhaJogador = escolhaJogador.substring(0, 1).toUpperCase() + escolhaJogador.substring(1).toLowerCase();
+                }
 
-        // Abaixo vai verificar quem venceu o jogo.
-        String resultado = game.verificarVencedor(escolhaJogador, escolhaComputador);
-        System.out.println(resultado);
+                if (escolhaJogador.equals("Pedra") || escolhaJogador.equals("Papel") || escolhaJogador.equals("Tesoura")) {
+                    break;
+                } else {
+                    System.out.println("Opção inválida! Digite apenas Pedra, Papel ou Tesoura.");
+                }
+            }
 
-        scanner.close();    // Serve para finalizar o Scanner para evitar bugs.
+            System.out.println("Você escolheu: " + escolhaJogador);
 
+            String escolhaComputador = game.escolhaComputador();
+            System.out.println("O Computador escolheu: " + escolhaComputador);
+
+            String resultado = game.verificarVencedor(escolhaJogador, escolhaComputador);
+            System.out.println("\n========  RESULTADO  ========");
+            System.out.println("Jogador: " + escolhaJogador);
+            System.out.println("Computador: " + escolhaComputador);
+            System.out.println(resultado);
+            System.out.println("=============================\n");
+
+            // Perguntar se quer jogar novamente
+            System.out.println("Deseja jogar novamente? (sim/não)");
+            while (true) {
+                String resposta = scanner.nextLine().trim().toLowerCase();
+                if (resposta.equals("não")) {
+                    System.out.println("Obrigado por jogar! Até a próxima!");
+                    scanner.close();
+                    return; // Encerra o programa
+                } else if (resposta.equals("sim")) {
+                    System.out.println("\nNovo jogo iniciado!\n");
+                    break; // Sai do loop e recomeça
+                } else {
+                    System.out.println("Resposta inválida. Digite 'sim' ou 'não'.");
+                }
+            }
+        }
     }
 }
