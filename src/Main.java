@@ -9,7 +9,7 @@ public class Main {
         System.out.println("Esse é o primeiro projeto da minha vida como programador.");
         System.out.println("===========================================================\n");
 
-        while (true) { // Permite jogar várias rodadas
+        while (true) {
             System.out.print("Digite: Pedra, Papel ou Tesoura: ");
             
             String escolhaJogador;
