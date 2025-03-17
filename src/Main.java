@@ -16,7 +16,6 @@ public class Main {
             while (true) {
                 escolhaJogador = scanner.nextLine().trim();
 
-                // Formatar para sempre ter a primeira letra maiúscula e o resto minúsculo
                 if (escolhaJogador.length() > 0) {
                     escolhaJogador = escolhaJogador.substring(0, 1).toUpperCase() + escolhaJogador.substring(1).toLowerCase();
                 }
@@ -40,17 +39,16 @@ public class Main {
             System.out.println(resultado);
             System.out.println("=============================\n");
 
-            // Perguntar se quer jogar novamente
             System.out.println("Deseja jogar novamente? (sim/não)");
             while (true) {
                 String resposta = scanner.nextLine().trim().toLowerCase();
                 if (resposta.equals("não")) {
                     System.out.println("Obrigado por jogar! Até a próxima!");
                     scanner.close();
-                    return; // Encerra o programa
+                    return;
                 } else if (resposta.equals("sim")) {
                     System.out.println("\nNovo jogo iniciado!\n");
-                    break; // Sai do loop e recomeça
+                    break;
                 } else {
                     System.out.println("Resposta inválida. Digite 'sim' ou 'não'.");
                 }
